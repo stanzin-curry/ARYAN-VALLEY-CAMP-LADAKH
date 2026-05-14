@@ -1,0 +1,96 @@
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import SectionHeading from '../components/SectionHeading';
+import TestimonialCard from '../components/TestimonialCard';
+import { testimonials } from '../data/content';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+
+export default function TestimonialsSection() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const next = () => {
+    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const prev = () => {
+    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
+
+  const itemsPerPage = window.innerWidth >= 768 ? 3 : 1;
+  const visibleTestimonials = testimonials.slice(currentIndex, currentIndex + itemsPerPage);
+
+  return (
+    <section id="testimonials" className="bg-gradient-to-b from-beige/10 to-off-white section-spacing">
+      <div className="max-w-7xl mx-auto px-4">
+        <SectionHeading
+          title="Guest Stories"
+          subtitle="Hear from travelers who experienced Aryan Valley Camp"
+          className="mb-16"
+        />
+
+        {/* Testimonials Carousel */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="relative"
+        >
+          {/* Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            {visibleTestimonials.map((testimonial, idx) => (
+              <motion.div
+                key={testimonial.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: idx * 0.2 }}
+              >
+                <TestimonialCard {...testimonial} />
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Navigation Buttons */}
+          <div className="flex justify-center gap-4">
+            <motion.button
+              onClick={prev}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className="w-12 h-12 rounded-full bg-warm-brown text-off-white flex items-center justify-center hover:bg-deep-brown transition-colors"
+              aria-label="Previous testimonial"
+            >
+              <ChevronLeft size={20} />
+            </motion.button>
+
+            {/* Indicator Dots */}
+            <div className="flex items-center gap-2">
+              {[...Array(Math.ceil(testimonials.length / itemsPerPage))].map((_, idx) => (
+                <motion.button
+                  key={idx}
+                  onClick={() => setCurrentIndex(idx * itemsPerPage)}
+                  whileHover={{ scale: 1.2 }}
+                  className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                    idx === Math.floor(currentIndex / itemsPerPage)
+                      ? 'bg-warm-brown w-8'
+                      : 'bg-light-taupe hover:bg-stone-grey'
+                  }`}
+                  aria-label={`Go to testimonial ${idx + 1}`}
+                />
+              ))}
+            </div>
+
+            <motion.button
+              onClick={next}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className="w-12 h-12 rounded-full bg-warm-brown text-off-white flex items-center justify-center hover:bg-deep-brown transition-colors"
+              aria-label="Next testimonial"
+            >
+              <ChevronRight size={20} />
+            </motion.button>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}

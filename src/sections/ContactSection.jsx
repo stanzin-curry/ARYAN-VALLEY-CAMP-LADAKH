@@ -1,0 +1,149 @@
+import React from 'react';
+import { motion } from 'framer-motion';
+import SectionHeading from '../components/SectionHeading';
+import EnquiryForm from '../components/EnquiryForm';
+import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+
+export default function ContactSection() {
+  return (
+    <section id="contact" className="bg-off-white section-spacing">
+      <div className="max-w-7xl mx-auto px-4">
+        <SectionHeading
+          title="Get in Touch"
+          subtitle="Plan your journey to Aryan Valley Camp"
+          className="mb-16"
+        />
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          {/* Contact Information */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="space-y-8"
+          >
+            {/* Location */}
+            <div className="flex gap-4">
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                className="w-12 h-12 rounded-full bg-warm-brown/10 flex items-center justify-center flex-shrink-0"
+              >
+                <MapPin size={24} className="text-warm-brown" />
+              </motion.div>
+              <div>
+                <h4 className="font-semibold text-warm-brown mb-2">Location</h4>
+                <p className="text-stone-grey text-sm">
+                  Dah-Hanu Region<br />
+                  Aryan Valley, Ladakh<br />
+                  India
+                </p>
+              </div>
+            </div>
+
+            {/* Phone */}
+            <div className="flex gap-4">
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                className="w-12 h-12 rounded-full bg-warm-brown/10 flex items-center justify-center flex-shrink-0"
+              >
+                <Phone size={24} className="text-warm-brown" />
+              </motion.div>
+              <div>
+                <h4 className="font-semibold text-warm-brown mb-2">Phone</h4>
+                <a
+                  href="tel:+919876543210"
+                  className="text-stone-grey text-sm hover:text-warm-brown transition-colors"
+                >
+                  +91 7051298463
+                </a>
+              </div>
+            </div>
+
+            {/* Email */}
+            <div className="flex gap-4">
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                className="w-12 h-12 rounded-full bg-warm-brown/10 flex items-center justify-center flex-shrink-0"
+              >
+                <Mail size={24} className="text-warm-brown" />
+              </motion.div>
+              <div>
+                <h4 className="font-semibold text-warm-brown mb-2">Email</h4>
+                <a
+                  href="mailto:info@aryanvalley.com"
+                  className="text-stone-grey text-sm hover:text-warm-brown transition-colors"
+                >
+                  thearyanvalleycamp@gmail.com
+                </a>
+              </div>
+            </div>
+
+            {/* Best Time to Visit */}
+            <div className="flex gap-4">
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                className="w-12 h-12 rounded-full bg-warm-brown/10 flex items-center justify-center flex-shrink-0"
+              >
+                <Clock size={24} className="text-warm-brown" />
+              </motion.div>
+              <div>
+                <h4 className="font-semibold text-warm-brown mb-2">Best Time to Visit</h4>
+                <p className="text-stone-grey text-sm">
+                  April - September<br />
+                  Year-round for experienced travelers
+                </p>
+              </div>
+            </div>
+
+            {/* WhatsApp CTA */}
+            <motion.a
+              href="https://wa.me/919876543210"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-flex items-center gap-2 bg-green-500 text-off-white px-6 py-3 rounded-lg font-semibold hover:bg-green-600 transition-colors"
+            >
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.272-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-9.746 9.798c0 2.718.738 5.33 2.14 7.59l-2.275 6.821 6.986-2.302c2.15 1.161 4.576 1.777 7.086 1.777 5.386 0 9.807-4.411 9.837-9.798 0-2.624-.674-5.095-1.951-7.262-1.277-2.167-3.084-4.062-5.288-5.36-2.203-1.299-4.712-2.012-7.338-2.012zm0 0" />
+              </svg>
+              Chat on WhatsApp
+            </motion.a>
+          </motion.div>
+
+          {/* Enquiry Form */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="lg:col-span-2"
+          >
+            <EnquiryForm />
+          </motion.div>
+        </div>
+
+        {/* Map Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          viewport={{ once: true }}
+          className="mt-16 rounded-lg overflow-hidden shadow-lg"
+        >
+          <iframe
+            title="Aryan Valley Camp Location"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3314.6534849263!2d76.99347!3d34.387436!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38fdefbb0000000%3A0x0!2sAryan%20Valley%2C%20Ladakh!5e0!3m2!1sen!2sin!4v1234567890"
+            width="100%"
+            height="400"
+            style={{ border: 0 }}
+            allowFullScreen=""
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
